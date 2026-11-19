@@ -1,722 +1,429 @@
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国古文字研究 - 探索汉字文明的起源</title>
+<style>
+:root {
+    --primary: #873f27;
+    --dark: #29251f;
+    --gold: #c49a55;
+    --paper: #f6f0e4;
+    --light: #fffaf1;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: "Microsoft YaHei", "Noto Serif SC", serif;
+    background: var(--paper);
+    color: var(--dark);
+    line-height: 1.8;
+}
+header {
+    background: #29251f;
+    color: #f6e8c8;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.logo { font-size: 23px; font-weight: bold; letter-spacing: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: 20px; }
+nav a { color: #f6e8c8; text-decoration: none; font-size: 14px; }
+nav a:hover { color: #e8b96d; }
+.hero {
+    min-height: 430px;
+    background: linear-gradient(90deg,rgba(30,20,12,.9),rgba(30,20,12,.35)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600") center/cover;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 70px 10%;
+}
+.hero h1 { font-size: clamp(32px,5vw,56px); letter-spacing: 6px; }
+.hero p { max-width: 650px; margin-top: 20px; color: #eee2cd; font-size: 17px; }
+.hero .subtitle { color: #e7bd77; letter-spacing: 5px; margin-bottom: 12px; }
+.btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 28px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    width: fit-content;
+    border: none;
+    cursor: pointer;
+}
+.container { max-width: 1150px; margin: auto; padding: 65px 22px; }
+.section-title { text-align: center; margin-bottom: 38px; }
+.section-title h2 { font-size: 30px; color: var(--primary); }
+.section-title p { color: #887b69; font-size: 14px; }
+.timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+}
+.card {
+    background: var(--light);
+    padding: 25px;
+    border: 1px solid #e5d8c2;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(50,30,10,.04);
+}
+.card h3 { color: var(--primary); margin-bottom: 12px; }
+.card .period { color: #ae8750; font-size: 13px; margin-bottom: 8px; }
+.card p { font-size: 14px; color: #62594d; }
+.symbol {
+    font-size: 48px;
+    color: #873f27;
+    text-align: center;
+    margin: 10px 0;
+    font-family: serif;
+}
+.evolution {
+    background: #eae0ce;
+    padding: 50px 20px;
+}
+.evolution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap: 15px;
+    text-align: center;
+}
+.evolution-item {
+    background: #fffaf1;
+    padding: 20px 10px;
+    border-radius: 5px;
+}
+.evolution-item .char { font-size: 45px; color: var(--primary); }
+.evolution-item small { color: #8c7961; }
+.search-box {
+    max-width: 550px;
+    margin: 0 auto 30px;
+    display: flex;
+}
+.search-box input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #cbb99e;
+    outline: none;
+    background: white;
+}
+.search-box button {
+    padding: 12px 22px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.study-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+}
+.study-card {
+    background: #fffaf1;
+    padding: 25px;
+    text-align: center;
+    border-bottom: 3px solid var(--gold);
+}
+.study-card .big { font-size: 54px; color: var(--primary); }
+.study-card h3 { margin: 8px; }
+.quiz {
+    background: #302a24;
+    color: #f6e8c8;
+    padding: 55px 20px;
+}
+.quiz-inner { max-width: 750px; margin: auto; }
+.quiz h2 { text-align: center; color: #e5bd7d; }
+.question {
+    background: #41382e;
+    padding: 25px;
+    margin-top: 25px;
+    border-radius: 5px;
+}
+.options { display: grid; gap: 10px; margin-top: 15px; }
+.options button {
+    text-align: left;
+    padding: 12px;
+    background: #f7efdf;
+    color: #33291f;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.options button:hover { background: #e8c88e; }
+#answer { margin-top: 15px; color: #e7bd77; }
+footer {
+    background: #211d19;
+    color: #c6bba8;
+    text-align: center;
+    padding: 30px 15px;
+    font-size: 13px;
+}
+@media(max-width:650px) {
+    header { justify-content: center; }
+    nav { justify-content: center; gap: 12px; }
+    .hero { min-height: 350px; padding: 45px 7%; }
+    .hero h1 { letter-spacing: 2px; }
+    .container { padding: 45px 17px; }
+}
+</style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
-        </div>
-    </section>
+<header>
+    <div class="logo">中国古文字研究</div>
+    <nav>
+        <a href="#home">首页</a>
+        <a href="#history">发展历史</a>
+        <a href="#evolution">汉字演变</a>
+        <a href="#study">文字图鉴</a>
+        <a href="#quiz">知识测试</a>
+    </nav>
+</header>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="hero" id="home">
+    <div class="subtitle">CHINESE ANCIENT WRITING RESEARCH</div>
+    <h1>探寻汉字文明的起源</h1>
+    <p>
+        从甲骨刻辞到钟鼎铭文，从古老的象形符号到今天的汉字。
+        走进中国古文字的世界，探索中华文明数千年的文字传承与文化密码。
+    </p>
+    <a href="#history" class="btn">开启古文字探索</a>
+</section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+<section class="container" id="history">
+    <div class="section-title">
+        <h2>中国古文字发展史</h2>
+        <p>认识中国文字的起源、发展与演变</p>
+    </div>
+
+    <div class="timeline">
+        <div class="card">
+            <div class="period">商代 · 约公元前1600—前1046年</div>
+            <h3>甲骨文</h3>
+            <div class="symbol">日 月 山</div>
+            <p>主要刻写于龟甲和兽骨之上，是目前已发现的中国成熟文字体系之一，常用于商代占卜和记事。</p>
+        </div>
+
+        <div class="card">
+            <div class="period">商周时期</div>
+            <h3>金文</h3>
+            <div class="symbol">鼎</div>
+            <p>铸刻于青铜器上的文字，又称钟鼎文。内容涉及祭祀、战争、册命、赏赐及社会生活。</p>
+        </div>
+
+        <div class="card">
+            <div class="period">秦代 · 公元前221年以后</div>
+            <h3>小篆</h3>
+            <div class="symbol">篆</div>
+            <p>秦统一六国后推行的规范文字。字形结构趋于整齐，笔画匀称，是汉字发展史上的重要阶段。</p>
+        </div>
+
+        <div class="card">
+            <div class="period">秦汉时期</div>
+            <h3>隶书</h3>
+            <div class="symbol">書</div>
+            <p>隶书逐渐成熟，书写效率提高，字形趋于方正，标志着汉字由古文字向今文字转变的重要进程。</p>
+        </div>
+    </div>
+</section>
+
+<section class="evolution" id="evolution">
+    <div class="container">
+        <div class="section-title">
+            <h2>汉字演变探索</h2>
+            <p>从图形符号到成熟文字，感受汉字的形态变化</p>
+        </div>
+
+        <div class="search-box">
+            <input id="searchInput" placeholder="搜索汉字，例如：日、月、山、水">
+            <button onclick="searchWord()">查询</button>
+        </div>
+
+        <div class="evolution-grid" id="evolutionGrid">
+            <div class="evolution-item">
+                <div class="char">☀</div>
+                <h3>日</h3>
+                <small>太阳、光明</small>
             </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
+            <div class="evolution-item">
+                <div class="char">月</div>
+                <h3>月</h3>
+                <small>月亮、时间</small>
+            </div>
+            <div class="evolution-item">
+                <div class="char">山</div>
+                <h3>山</h3>
+                <small>山峰、地形</small>
+            </div>
+            <div class="evolution-item">
+                <div class="char">水</div>
+                <h3>水</h3>
+                <small>河流、液体</small>
+            </div>
+            <div class="evolution-item">
+                <div class="char">火</div>
+                <h3>火</h3>
+                <small>火焰、光热</small>
             </div>
         </div>
-    </section>
+        <p id="searchResult" style="text-align:center;margin-top:20px;color:#873f27;"></p>
+    </div>
+</section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+<section class="container" id="study">
+    <div class="section-title">
+        <h2>古文字知识图鉴</h2>
+        <p>从不同文字类型了解中华文明的历史信息</p>
+    </div>
+
+    <div class="study-grid">
+        <div class="study-card">
+            <div class="big">甲</div>
+            <h3>甲骨文</h3>
+            <p>研究商代历史、王室祭祀、农业生产、天文历法的重要资料。</p>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
+        <div class="study-card">
+            <div class="big">金</div>
+            <h3>金文</h3>
+            <p>反映商周时期的政治制度、礼仪制度、社会关系和历史事件。</p>
         </div>
-    </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
+        <div class="study-card">
+            <div class="big">篆</div>
+            <h3>篆书</h3>
+            <p>包括大篆、小篆，是中国古代文字规范化进程中的重要形式。</p>
+        </div>
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
+        <div class="study-card">
+            <div class="big">简</div>
+            <h3>简帛文字</h3>
+            <p>书写于竹简、木牍和丝帛之上的文字，保存了大量古代文献。</p>
+        </div>
+    </div>
+</section>
 
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
+<section class="quiz" id="quiz">
+    <div class="quiz-inner">
+        <h2>古文字知识测试</h2>
+        <p style="text-align:center;color:#c6bba8;">通过互动答题，检验你的古文字知识</p>
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
+        <div class="question">
+            <h3 id="questionText">1. 甲骨文主要刻写在哪些材料上？</h3>
+            <div class="options" id="options">
+                <button onclick="checkAnswer(0)">A. 竹简和木牍</button>
+                <button onclick="checkAnswer(1)">B. 龟甲和兽骨</button>
+                <button onclick="checkAnswer(2)">C. 丝绸和纸张</button>
+            </div>
+            <div id="answer"></div>
+            <button class="btn" onclick="nextQuestion()">下一题</button>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>中国古文字研究专题网站</p>
+    <p>探索汉字源流 · 传承中华文明</p>
+    <p>本网站为古文字知识科普与学习交流页面</p>
+    <p>© 2026 中国古文字研究</p>
+</footer>
+
+<script>
+const wordData = {
+    "日": "甲骨文中的日字常以圆形或带点的圆形表示太阳。",
+    "月": "甲骨文中的月字通常描绘月牙形状。",
+    "山": "甲骨文中的山字以山峰的象形轮廓表现山形。",
+    "水": "甲骨文中的水字常以中间主流、两侧水滴表现水流。",
+    "火": "甲骨文中的火字以火焰向上燃烧的形态表现。"
+};
+
+function searchWord() {
+    const word = document.getElementById("searchInput").value.trim();
+    const result = document.getElementById("searchResult");
+
+    if (!word) {
+        result.innerText = "请输入需要查询的汉字。";
+        return;
+    }
+
+    if (wordData[word]) {
+        result.innerText = word + "：" + wordData[word];
+    } else {
+        result.innerText = "暂未收录该汉字，请尝试：日、月、山、水、火。";
+    }
+}
+
+document.getElementById("searchInput").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") searchWord();
+});
+
+const questions = [
+    {
+        q: "1. 甲骨文主要刻写在哪些材料上？",
+        a: ["A. 竹简和木牍", "B. 龟甲和兽骨", "C. 丝绸和纸张"],
+        correct: 1,
+        explain: "正确！甲骨文主要刻写于龟甲和兽骨之上。"
+    },
+    {
+        q: "2. 金文又被称为什么？",
+        a: ["A. 钟鼎文", "B. 简牍文", "C. 石鼓文"],
+        correct: 0,
+        explain: "正确！金文又称钟鼎文，主要铸刻于青铜器上。"
+    },
+    {
+        q: "3. 秦始皇统一六国后推行了哪种规范文字？",
+        a: ["A. 楷书", "B. 小篆", "C. 草书"],
+        correct: 1,
+        explain: "正确！秦统一后推行小篆，促进了文字规范化。"
+    },
+    {
+        q: "4. 甲骨文属于哪一时期的重要文字资料？",
+        a: ["A. 商代", "B. 唐代", "C. 明代"],
+        correct: 0,
+        explain: "正确！甲骨文是研究商代历史的重要资料。"
+    }
+];
+
+let currentQuestion = 0;
+let answered = false;
+
+function renderQuestion() {
+    const q = questions[currentQuestion];
+    document.getElementById("questionText").innerText = q.q;
+    document.getElementById("options").innerHTML = q.a.map((item, index) =>
+        `<button onclick="checkAnswer(${index})">${item}</button>`
+    ).join("");
+    document.getElementById("answer").innerText = "";
+    answered = false;
+}
+
+function checkAnswer(index) {
+    if (answered) return;
+    answered = true;
+    const q = questions[currentQuestion];
+    const result = document.getElementById("answer");
+    if (index === q.correct) {
+        result.innerText = q.explain;
+    } else {
+        result.innerText = "回答错误，正确答案是：" + q.a[q.correct];
+    }
+}
+
+function nextQuestion() {
+    currentQuestion = (currentQuestion + 1) % questions.length;
+    renderQuestion();
+}
+</script>
+
 </body>
-
 </html>
+```
